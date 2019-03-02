@@ -37,8 +37,8 @@ public class SearchFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnSearchListener) {  //  = if MainActivity has implemented OnSearchListener
-            // The code makes sure that the host Activity has
-            // implemented the callback interface.
+            // MainActivity IS A OnSearchListener by polymorphism
+            // set mListener variable to the MainActivity instance
             mListener = (OnSearchListener) context;
         } else {
             throw new ClassCastException(context.toString()
@@ -74,8 +74,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mListener.onSearchSubmitted(editText.getText().toString());
-                // Still abit confused at why I'm calling the method from an instance
-                // of the instance in the fragment
+                // this is calling the onSearchSubmitted method * in the * MainActivity
             }
         });
 
